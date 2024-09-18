@@ -38,7 +38,8 @@ export default function Login() {
 
   const login_request = async() => {
     try {
-      const { data } = await axios.post("http://localhost:3000/login", inputs, { withCredentials: true });
+      const url = import.meta.env.MODE === "production" ? "https://backend-z770.onrender.com/login" : "http://localhost:3000/login"
+      const { data } = await axios.post(url, inputs, { withCredentials: true });
       return [data, null];
     } catch(error) {
       return [null, error];

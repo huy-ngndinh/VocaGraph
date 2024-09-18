@@ -41,7 +41,8 @@ export default function Signup() {
 
   const signup_request = async() => {
     try {
-      const { data } = await axios.post("http://localhost:3000/signup", inputs, { withCredentials: true });
+      const url = import.meta.env.MODE === "production" ? "https://backend-z770.onrender.com/signup" : "http://localhost:3000/signup"
+      const { data } = await axios.post(url, inputs, { withCredentials: true });
       return [data, null];
     } catch(error) {
       return [null, error];

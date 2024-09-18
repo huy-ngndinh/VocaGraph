@@ -24,7 +24,8 @@ export default function Main() {
 
   const get_graph = async () => {
     if (!cookies.token) navigate("/login");
-    const { data } = await axios.get("http://localhost:3000/get_graph", { withCredentials: true });
+    const url = import.meta.env.MODE === "production" ? "https://backend-z770.onrender.com/get_graph" : "http://localhost:3000/get_graph"
+    const { data } = await axios.get(url, { withCredentials: true });
     if (!data.status) navigate("/login");
     data.graph_data.nodes.forEach((node: { id: string }) => {
       const new_node: NodeProps = { id: node.id } as NodeProps;
@@ -54,7 +55,8 @@ export default function Main() {
 
   const verify_user = async () => {
     if (!cookies.token) navigate("/login");
-    const { data } = await axios.post("http://localhost:3000/verify", {}, { withCredentials: true });
+    const url = import.meta.env.MODE === "production" ? "https://backend-z770.onrender.com/verify" : "http://localhost:3000/verify"
+    const { data } = await axios.post(url, {}, { withCredentials: true });
     if (!data.status) navigate("/login");
     set_email(data.user);
   };
