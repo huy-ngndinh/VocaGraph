@@ -14,18 +14,27 @@ A website to study languages based on semantic map.
 
 
 
+## Demo
+Visit the site [here](https://frontend-1il6.onrender.com/)
+
+The server shut down due to inactivity, so the first request after that may take longer to process.
+
+
+
+
+
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/huy-ngndinh/VocaGraph
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd VocaGraph
 ```
 
 Run with Docker
