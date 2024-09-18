@@ -1,17 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { CookieSetOptions } from "universal-cookie";
+// import { CookieSetOptions } from "universal-cookie";
 
 interface Props {
   email: string,
-  removeCookie: (name: string, options?: CookieSetOptions) => void;
+  // removeCookie: (name: string, options?: CookieSetOptions) => void;
 }
 
-export default function Account({ email, removeCookie }: Props)  {
+export default function Account({ email }: Props)  {
 
   const navigate = useNavigate();
 
   const onClick = () => {
-    removeCookie("token");
+    // removeCookie("token");
+    sessionStorage.removeItem("token");
     navigate("/");
   }
 

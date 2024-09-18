@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { GrapDataProps, LinkProps, NodeProps } from "./main/type";
 import Account from "./main/account";
@@ -20,7 +20,7 @@ export default function Main() {
   const [email, set_email] = useState("");
   const [graph_data, set_graph_data] = React.useState<GrapDataProps>({ nodes: [], links: [] });
 
-  const [cookies,, removeCookie] = useCookies();
+  // const [cookies,, removeCookie] = useCookies();
 
   const get_graph = async () => {
     const token = sessionStorage.getItem("token");
@@ -102,7 +102,7 @@ export default function Main() {
         <div className="col-start-2 col-end-17 size-full bg-blue-50 rounded-r-xl rounded-bl-xl shadow-lg">
           { current_tab === 0 && <Graph graph_data={graph_data}/> }
           { current_tab === 1 && graph_data && <Reader graph_data={graph_data} set_graph_data={set_graph_data} set_message={set_message}/> }
-          { current_tab === 2 && <Account email={email} removeCookie={removeCookie} />}
+          { current_tab === 2 && <Account email={email} />}
         </div>
       </div>
     </div>
