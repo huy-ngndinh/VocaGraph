@@ -10,6 +10,7 @@ module.exports.Signup = async (req, res, next) => {
     const new_user = await user.create({ email: email, password: password, created_date: created_date, graph_data: { nodes: [], links: [] } });
     const token = secret_token(new_user._id);
     res.cookie("token", token, {
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       httpOnly: true,
       secure: true,
       sameSite: 'Lax',
