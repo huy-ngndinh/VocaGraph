@@ -157,6 +157,8 @@ export default function Reader({ graph_data, set_graph_data, set_message }: Prop
 
   const update_graph = async () => {
     try {
+      const token = sessionStorage.getItem("token");
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       const url = import.meta.env.MODE === "production" ? "https://backend-z770.onrender.com/update_graph" : "http://localhost:3000/update_graph"
       const { data } = await axios.post(url, { new_nodes, new_links }, { withCredentials: true });
       return [data, null];

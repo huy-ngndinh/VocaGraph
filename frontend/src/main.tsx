@@ -23,7 +23,10 @@ export default function Main() {
   const [cookies,, removeCookie] = useCookies();
 
   const get_graph = async () => {
-    if (!cookies.token) navigate("/login");
+    const token = sessionStorage.getItem("token");
+    // if (!cookies.token) navigate("/login");
+    if (!token) navigate("/login");
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const url = import.meta.env.MODE === "production" ? "https://backend-z770.onrender.com/get_graph" : "http://localhost:3000/get_graph"
     const { data } = await axios.get(url, { withCredentials: true });
     if (!data.status) navigate("/login");
@@ -54,7 +57,10 @@ export default function Main() {
   }, []);
 
   const verify_user = async () => {
-    if (!cookies.token) navigate("/login");
+    const token = sessionStorage.getItem("token");
+    // if (!cookies.token) navigate("/login");
+    if (!token) navigate("/login");
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const url = import.meta.env.MODE === "production" ? "https://backend-z770.onrender.com/verify" : "http://localhost:3000/verify"
     const { data } = await axios.post(url, {}, { withCredentials: true });
     if (!data.status) navigate("/login");

@@ -10,12 +10,12 @@ module.exports.Login = async (req, res, next) => {
     const password_match = await argon2.verify(exisiting_user.password, password);
     if (!password_match) return res.json({ status: 0, message: "Password incorrect!" });
     const token = secret_token(exisiting_user._id);
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'Lax',
-    });
-    res.status(201).json({ status: 1, message: "Login successfully!" });
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: 'Lax',
+    // });
+    res.status(201).json({ status: 1, message: "Login successfully!", token: token });
   } catch(error) {
     console.error(error);
   }

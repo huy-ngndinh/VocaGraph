@@ -26,6 +26,7 @@ export default function Login() {
     const [data, error] = await login_request();
     // console.log(data);
     if (data) {
+      sessionStorage.setItem("token", data.token);
       set_message(data.message);
       const timeout = setTimeout(() => {
         navigate("/");

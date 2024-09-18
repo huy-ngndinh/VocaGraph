@@ -29,6 +29,7 @@ export default function Signup() {
     set_inputs({...inputs, "created_date": new Date()});
     const [data, error] = await signup_request();
     if (data) {
+      sessionStorage.setItem("token", data.token);
       set_message(data.message);
       const timeout = setTimeout(() => {
         navigate("/");
