@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import ForceGraph from "react-force-graph-2d";
 import * as d3 from "d3-force";
 import { ForceGraphRefProps, GrapDataProps, LinkProps, NodeProps } from "./type";
+import Search from "./graph_utils/search";
 // import { Node, Link, GraphData } from "./type";
 
 type Props = {
@@ -141,6 +142,7 @@ export default function Graph({ graph_data }: Props) {
         linkWidth={linkWidth}
         onNodeHover={onNodeHover}
       /> }
+      <Search memoized_graph_data={memoized_graph_data} graph_ref={graph_ref} />
       {/* <div className="absolute w-1/20 h-auto bottom-3 right-3 flex flex-col justify-end items-center gap-2">
         <button className="w-full aspect-square bg-blue-200 rounded-md">
           +
